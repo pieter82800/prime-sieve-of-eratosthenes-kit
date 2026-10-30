@@ -55,3 +55,10 @@ node --test
 ```
 
 Zero third-party dependencies. ESM only. Requires Node 18+.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
